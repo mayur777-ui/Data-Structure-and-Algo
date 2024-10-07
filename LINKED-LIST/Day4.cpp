@@ -21,7 +21,7 @@ public:
     }
 };
 
-Broute force approach
+// Broute force approach
 bool detectLoop(Node* head){
     Node *temp = head;
     unordered_map<Node*,int> mpp;
