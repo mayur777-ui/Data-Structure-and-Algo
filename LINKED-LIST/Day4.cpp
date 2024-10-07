@@ -108,7 +108,7 @@ public:
 };
 
 
-Broute force approach
+// Broute force approach
 Node* detectLoop(Node* head) {
     Node* temp = head;
     unordered_map<Node*, int> mp;
@@ -200,7 +200,7 @@ public:
         next = nullptr;
     }
 };
-Broute Force 
+// Broute Force 
 int lengthOfLoop(Node* head) {
     Node* temp = head;
     unordered_map<Node*, int> mpp;
