@@ -6,27 +6,54 @@ using namespace std;
 
 class Node {
 public:
-    int data;
-    Node* next;
-    Node(int data) : data(data), next(nullptr) {}
+    int data;        
+    Node* next;      
+
+    Node(int data1, Node* next1) {
+        data = data1;
+        next = next1;
+    }
+
+    
+    Node(int data1) {
+        data = data1;
+        next = nullptr;
+    }
 };
+
+// Broute force approach
+// bool detectLoop(Node* head){
+//     Node *temp = head;
+//     unordered_map<Node*,int> mpp;
+//     while(temp != nullptr){
+//         if(mpp.find(temp)!= mpp.end()){
+//             return true;
+//         }
+
+//         mpp[temp] = 1;
+//     }
+//     return false;
+// }
 
 
 bool detectLoop(Node* head){
-    Node *temp = head;
-    unordered_map<Node*,int> mpp;
-    while(temp != nullptr){
-        if(mpp.find(temp)!= mpp.end()){
-            return true;
-        }
-
-        mpp[temp] = 1;
+    Node* slow = head;
+    Node* fast = head;
+    while (fast != nullptr && slow != nullptr)
+    {
+       fast = fast->next->next;
+       slow = slow->next;
+       if(slow == fast){
+        return true;
+       }
     }
     return false;
+    
 }
+
+// Optimal Approach
 int main() {
-    // Create a sample linked list
-    // with a loop for testing
+
     
     Node* head = new Node(1);
     Node* second = new Node(2);
@@ -38,11 +65,7 @@ int main() {
     second->next = third;
     third->next = fourth;
     fourth->next = fifth;
-     // Create a loop
     fifth->next = third; 
-
-    // Check if there is a loop 
-    // n the linked list
     if (detectLoop(head)) {
         cout << "Loop detected in the linked list." << endl;
     } else {
@@ -55,6 +78,5 @@ int main() {
     delete third;
     delete fourth;
     delete fifth;
-
     return 0;
 }
