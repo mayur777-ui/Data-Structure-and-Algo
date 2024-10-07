@@ -21,21 +21,21 @@ public:
     }
 };
 
-// Broute force approach
-// bool detectLoop(Node* head){
-//     Node *temp = head;
-//     unordered_map<Node*,int> mpp;
-//     while(temp != nullptr){
-//         if(mpp.find(temp)!= mpp.end()){
-//             return true;
-//         }
+Broute force approach
+bool detectLoop(Node* head){
+    Node *temp = head;
+    unordered_map<Node*,int> mpp;
+    while(temp != nullptr){
+        if(mpp.find(temp)!= mpp.end()){
+            return true;
+        }
 
-//         mpp[temp] = 1;
-//     }
-//     return false;
-// }
+        mpp[temp] = 1;
+    }
+    return false;
+}
 
-
+// Optimal Approach
 bool detectLoop(Node* head){
     Node* slow = head;
     Node* fast = head;
@@ -51,7 +51,7 @@ bool detectLoop(Node* head){
     
 }
 
-// Optimal Approach
+
 int main() {
 
     
