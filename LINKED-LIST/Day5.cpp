@@ -29,26 +29,26 @@ public:
 
 
 
-// Broute force
-bool isPalindrome(Node* head){
-    Node* temp = head;
-    stack<int> s;
-    while(temp != nullptr){
-        s.push(temp->data);
-        temp = temp->next;
-    }
-    temp = head;
-    while (temp != nullptr)
-    {
-        if(temp->data != s.top()){
-            return false;
-        }
+// // Broute force
+// bool isPalindrome(Node* head){
+//     Node* temp = head;
+//     stack<int> s;
+//     while(temp != nullptr){
+//         s.push(temp->data);
+//         temp = temp->next;
+//     }
+//     temp = head;
+//     while (temp != nullptr)
+//     {
+//         if(temp->data != s.top()){
+//             return false;
+//         }
 
-        s.pop();
-        temp = temp->next;
-    }
+//         s.pop();
+//         temp = temp->next;
+//     }
     
-}
+// }
 
   
 
@@ -82,7 +82,7 @@ Node* reverseLinkedList(Node *head)
 Node*  funtomiddle(Node* head){
     Node* slow = head;
     Node* fast = head;
-    while(fast != nullptr && fast->next != nullptr){
+    while(fast->next != nullptr && fast->next->next != nullptr){
         fast = fast->next->next;
         slow = slow->next;
     }
@@ -118,10 +118,10 @@ bool isPalindrom(Node* head){
 int main() {
     
     Node* head = new Node(1);
-    head->next = new Node(5);
-    head->next->next = new Node(2);
-    head->next->next->next = new Node(5);
-    head->next->next->next->next = new Node(1);
+    head->next = new Node(2);
+    // head->next->next = new Node(2);
+    // head->next->next->next = new Node(5);
+    // head->next->next->next->next = new Node(1);
 
 
 
