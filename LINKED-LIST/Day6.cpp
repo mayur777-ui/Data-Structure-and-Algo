@@ -101,7 +101,6 @@ int main() {
     cout << "Updated Linked List: ";
     printLL(head);
 
-    return 0;
 }
 
 
