@@ -190,6 +190,25 @@ void printLinkedList(Node* head){
     cout << endl;
 }
 
+<<<<<<< HEAD
+=======
+int main() {
+    Node* head = new Node(1);
+    head->next = new Node(2);
+    head->next->next = new Node(3);
+    head->next->next->next = new Node(4);
+    head->next->next->next->next = new Node(5);
+
+    cout << "Original Linked List: ";
+    printLL(head);
+
+    head = deleteMiddle(head);
+
+    cout << "Updated Linked List: ";
+    printLL(head);
+
+}
+>>>>>>> fef880231d620cc758336f68df29eaa8c9bec79c
 
 // int main() {
 //     // Linked List: 3 2 5 4 1
