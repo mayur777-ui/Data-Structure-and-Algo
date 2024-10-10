@@ -29,6 +29,8 @@ void appendNode(Node* &head, int val) {
     return;
 }
 
+
+// Broute approach 
 Node* findIntersection(Node* head1, Node* head2) {
     while (head2 != NULL) {
         Node* temp = head1;
@@ -41,6 +43,8 @@ Node* findIntersection(Node* head1, Node* head2) {
     return NULL;
 }
 
+
+// Better approach
 node* findIntersection(node* head1,node* head2) {
      unordered_set<node*> st;
     while(head1 != NULL) {
@@ -55,6 +59,7 @@ node* findIntersection(node* head1,node* head2) {
 
 }
 
+
 // Optimal approach
 node* findIntersection(node* head1,node* head2) {
     node* d1 = head1;
@@ -67,6 +72,9 @@ node* findIntersection(node* head1,node* head2) {
     
     return d1;
 }
+
+
+
 
 
 
