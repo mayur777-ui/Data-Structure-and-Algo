@@ -41,8 +41,6 @@ Node* findIntersection(Node* head1, Node* head2) {
     return NULL;
 }
 
-
-
 node* findIntersection(node* head1,node* head2) {
      unordered_set<node*> st;
     while(head1 != NULL) {
@@ -56,6 +54,7 @@ node* findIntersection(node* head1,node* head2) {
     return NULL;
 
 }
+
 void displayList(Node* head) {
     while (head->next != NULL) {
         cout << head->num << "->";
