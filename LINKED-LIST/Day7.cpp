@@ -41,6 +41,21 @@ Node* findIntersection(Node* head1, Node* head2) {
     return NULL;
 }
 
+
+// node* findIntersection(node* head1,node* head2) {
+//      unordered_set<node*> st;
+//     while(head1 != NULL) {
+//        st.insert(head1);
+//        head1 = head1->next;
+//     }
+//     while(head2 != NULL) {
+//         if(st.find(head2) != st.end()) return head2;
+//         head2 = head2->next;
+//     }
+//     return NULL;
+
+// }
+
 void displayList(Node* head) {
     while (head->next != NULL) {
         cout << head->num << "->";
