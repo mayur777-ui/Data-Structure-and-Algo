@@ -212,8 +212,6 @@ int main() {
     }
 
     return 0;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 841bcd772d73aaeebdcc70ef7753e022bb24d226
+
