@@ -151,6 +151,29 @@ node* rotateRight(node* head,int k) {
     return head;
 }
 
+
+// Optimal Approach
+node* rotateRight(node* head, int k) {
+    if (head == NULL || head->next == NULL || k == 0){
+        return head;
+    }
+    node* temp = head;
+    int length = 1;
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+    temp->next = head;
+    k = k%length;
+    int end = length - k;
+    while (end--)
+    {
+        temp = temp->next;
+    }
+    head = temp->next;
+    temp->next = nullptr;
+    return head;
+}
+
 void printList(node* head) {
     while(head->next != NULL) {
         cout<<head->num<<"->";
@@ -173,9 +196,7 @@ int main() {
     printList(head);
     
     int k = 2;
-    node* newHead = rotateRight(head,k); 
-    the nodes by k times
-    
+    node* newHead = rotateRight(head,k);
     cout<<"After "<<k<<" iterations: ";
     printList(newHead);
     return 0;
