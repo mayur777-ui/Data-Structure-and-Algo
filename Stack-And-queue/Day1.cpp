@@ -306,6 +306,7 @@ int main() {
 }
 
 
+<<<<<<< HEAD
 
 // IMPLEMENTATION OF STACK USING IN-BUILT QUEUE;
 #include <iostream>
@@ -359,3 +360,5 @@ int main() {
 
     return 0;
 }
+=======
+>>>>>>> d0d5a40112fe667f2899fdd1d3c055391a5091f1
