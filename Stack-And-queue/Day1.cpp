@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // IMPLEMENTATION OF STACK USING ARRAY
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -136,3 +137,6 @@ int main() {
 
   return 0;
 }
+=======
+// i am add
+>>>>>>> 859d9dd101edcd1395257432ffa30415ae956359
