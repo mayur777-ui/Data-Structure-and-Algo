@@ -115,13 +115,6 @@ class Queue{
 };
 
 
-
-
-
-
-
-
-
 int main() {
   Queue q(6);
   q.push(4);
@@ -137,3 +130,177 @@ int main() {
   return 0;
 }
 
+
+
+
+
+// IMPLEMENTATION OF STACK BY Linked list 
+#include <iostream>
+using namespace std;
+
+class Node{
+    public:
+        int data;
+        Node* next;
+        Node(int value){
+            data = value;
+            next = NULL;
+        }
+};
+
+class Stack{
+    public:
+        Node* top;
+        int size;
+        Stack(){
+            top = nullptr;
+            size = 0;
+        }
+
+        void push(int x){
+            Node* newNode = new Node(x);
+            newNode->next = top;
+            top = newNode;
+            size++;
+        }
+
+        int pop(){
+            if(top == NULL){
+                return -1;
+            }
+            int popped = top->data;
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+            size--;
+            return popped;
+        }
+
+        int Top(){
+            if(top == nullptr){
+                return -1;
+            }
+            return top->data;
+        }
+
+        bool isEmpty(){
+            return top == nullptr;
+        }
+
+        int Size(){ 
+            return size;
+        }
+
+        void printStack(){
+            Node* temp = top;
+            while(temp != nullptr){
+                cout << temp->data << " ";
+                temp = temp->next;
+            }
+            cout << endl;
+        }
+};
+
+int main() {
+  Stack s; 
+  s.push(10);
+  s.push(20);
+  s.push(30);
+
+  cout << "Element popped: " << s.pop() << "\n";
+  cout << "Stack size: " << s.Size() << "\n";
+  cout << "Stack empty or not? " << (s.isEmpty() ? "Yes" : "No") << "\n";
+  cout << "Stack's top element: " << s.Top() << "\n";
+  cout << "Stack elements: ";
+  s.printStack();
+
+  return 0;
+}
+
+
+
+
+// IMPLEMENTATION OF QUEUE BY USING LINKED LIST
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data = 0;
+    Node* next;
+
+    Node(int val){
+        data = val;
+        next = nullptr;
+    }
+};
+
+
+class Queue{
+    int size;
+    Node* front;
+    Node* rear;
+    public:
+        Queue(){
+            size = 0;
+            front = nullptr;
+            rear = nullptr;
+        }
+
+        bool empty(){
+            return front == nullptr;
+        }
+
+        int  top(){
+            return front->data;
+        }
+
+        void Enqueue(int x){
+            if(front == nullptr){
+                Node* nptr = new Node(x);
+                front = nptr;
+                rear = nptr;
+                size++;
+                return;
+            }
+            Node* nptr = new Node(x);
+            rear->next = nptr;
+            rear = nptr;
+            size++;
+            return;
+        }
+
+        int Dequeue(){
+            if(front == nullptr){
+                return -1;
+            }
+            int popped = front->data;
+            Node* temp = front;
+            front = front->next;
+            delete temp;
+            size--;
+            return popped;
+        }
+        int Size(){
+            return size;
+        }
+};
+
+
+
+
+int main() {
+    Queue q;
+
+    q.Enqueue(10);
+    q.Enqueue(20);
+    q.Enqueue(30);
+
+    cout << "Front element: " << q.top() << "\n";  
+    cout << "Dequeue: " << q.Dequeue() << "\n";   
+    cout << "Front element after dequeue: " << q.top() << "\n";  
+
+    cout << "Queue size: " << q.Size() << "\n";  
+
+    return 0;
+}
