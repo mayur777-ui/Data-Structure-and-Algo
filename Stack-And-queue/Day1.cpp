@@ -116,12 +116,6 @@ class Queue{
 
 
 
-
-
-
-
-
-
 int main() {
   Queue q(6);
   q.push(4);
