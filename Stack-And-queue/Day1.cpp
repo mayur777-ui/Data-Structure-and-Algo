@@ -475,21 +475,19 @@ int main() {
     q->push(20);
     q->push(30);
 
-    cout << "Front element: " << q->top() << endl; // Should print 10
-    cout << "Popped element: " << q->pop() << endl; // Should remove 10
-    cout << "Front element after pop: " << q->top() << endl; // Should print 20
+    cout << "Front element: " << q->top() << endl;
+    cout << "Popped element: " << q->pop() << endl; 
+    cout << "Front element after pop: " << q->top() << endl; 
 
     q->push(40);
-    cout << "Front element after pushing 40: " << q->top() << endl; // Should print 20
-    cout << "Popped element: " << q->pop() << endl; // Should remove 20
+    cout << "Front element after pushing 40: " << q->top() << endl;
+    cout << "Popped element: " << q->pop() << endl; 
+    cout << "Is the queue empty? " << (q->empty() ? "Yes" : "No") << endl; 
+    cout << "Popped element: " << q->pop() << endl; 
+    cout << "Popped element: " << q->pop() << endl; 
 
-    cout << "Is the queue empty? " << (q->empty() ? "Yes" : "No") << endl; // Should print No
-    cout << "Popped element: " << q->pop() << endl; // Should remove 30
-    cout << "Popped element: " << q->pop() << endl; // Should remove 40
-
-    cout << "Is the queue empty now? " << (q->empty() ? "Yes" : "No") << endl; // Should print Yes
-
-    // Clean up
+    cout << "Is the queue empty now? " << (q->empty() ? "Yes" : "No") << endl; 
+    
     delete q;
 
     return 0;
