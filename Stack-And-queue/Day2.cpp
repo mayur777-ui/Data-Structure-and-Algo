@@ -33,9 +33,7 @@ int main()
 
 
 // Implement Min Stack 
-#include <stack>
-#include <climits>
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 class MinStack {
