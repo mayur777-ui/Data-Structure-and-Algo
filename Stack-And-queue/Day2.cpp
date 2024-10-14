@@ -1,4 +1,4 @@
-// Check for Balanced parentheses
+// Check for Balanced Parentheses
 #include <bits/stdc++.h>
 using namespace std;
 bool isValid(string s){
