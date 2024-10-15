@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 //1. INFIX TO POstFIX;
-=======
-// INFIX TO POSTFIX;
->>>>>>> 2741e02c16407fb5382220c739e79e0d61b8b8d9
+
 #include<bits/stdc++.h>
 using namespace std;
 int prec(char c){
