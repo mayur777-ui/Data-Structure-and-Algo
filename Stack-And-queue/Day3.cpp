@@ -1,4 +1,4 @@
-//1. INFIX TO POstFIX;
+//1. INFIX TO POSTFIX;
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -61,7 +61,7 @@ int main() {
 
 
 
-//2. INFIX TO PreFIX;
+//2. INFIX TO PREFIX;
 
 int prec(char c){
     if(c == '+' || c == '-'){
