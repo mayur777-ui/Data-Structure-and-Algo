@@ -1,4 +1,4 @@
-// Check for Balanced parentheses
+// Check for Balanced Parentheses
 #include <bits/stdc++.h>
 using namespace std;
 bool isValid(string s){
@@ -33,9 +33,7 @@ int main()
 
 
 // Implement Min Stack 
-#include <stack>
-#include <climits>
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 class MinStack {
