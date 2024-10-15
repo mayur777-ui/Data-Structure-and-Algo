@@ -62,7 +62,6 @@ int main() {
 
 
 //2. INFIX TO PREFIX;
-
 int prec(char c){
     if(c == '+' || c == '-'){
         return 1;
@@ -152,5 +151,36 @@ int main() {
     string exp = "AB+C*";
     cout << "Postfix expression: " << exp << endl;
     PostfixToinfix(exp);
+    return 0;
+}
+
+
+
+
+//3. POSTFIX TO PREFIX
+void PostfixToPrefix(string s) {
+    stack<string> st;
+    int i = 0;
+    int n = s.length();
+    while(i < n) {
+        if(isalnum(s[i])) {
+            st.push(string(1, s[i]));
+        }else {
+            string t1 = st.top();
+            st.pop();
+            string t2 = st.top();
+            st.pop();
+            string ex = s[i] + t2 + t1;
+            st.push(ex);
+        }
+        i++;
+    }
+    cout << "The conversion is: " << st.top() << endl;
+}
+
+int main() {
+    string exp = "AB+C*";
+    cout << "Postfix expression: " << exp << endl;
+    PostfixToPrefix(exp);
     return 0;
 }
