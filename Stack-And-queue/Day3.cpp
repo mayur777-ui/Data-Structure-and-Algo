@@ -1,4 +1,4 @@
-// INFIX TO POstFIX;
+// INFIX TO POSTFIX;
 #include<bits/stdc++.h>
 using namespace std;
 int prec(char c){
@@ -46,7 +46,7 @@ void infixToPostfix(string s){
         st.pop();
     }
 
-    cout << "conversion is: " << post;
+    cout << "PostFix Conversion is: " << post;
 }
 
 int main() {
