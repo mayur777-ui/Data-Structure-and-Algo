@@ -157,7 +157,7 @@ int main() {
 
 
 
-//3. POSTFIX TO PREFIX
+//4. POSTFIX TO PREFIX
 void PostfixToPrefix(string s) {
     stack<string> st;
     int i = 0;
