@@ -220,5 +220,34 @@ int main() {
 }
 
 
+// 6. PREFIX TO POSTFIX
 
+void PrefixToPostfix(string s) {
+    stack<string> st;
+    int i = s.length() - 1;
+    while(i >= 0) {
+        if(isalnum(s[i])) {
+            st.push(string(1, s[i]));
+        }else {
+             if (st.size() < 2) {
+                cout << "Invalid prefix expression." << endl;
+                return;
+            }
+            string t1 = st.top();
+            st.pop();
+            string t2 = st.top();
+            st.pop();
+            string ex =  t1 + t2  + s[i];
+            st.push(ex);
+        }
+        i--;
+    }
+    cout << "The conversion is: " << st.top() << endl;
+}
 
+int main() {
+    string exp = "*+AB-CD";
+    cout << "Postfix expression: " << exp << endl;
+    PrefixToPostfix(exp);
+    return 0;
+}
