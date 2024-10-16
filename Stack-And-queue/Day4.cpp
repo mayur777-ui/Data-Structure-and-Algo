@@ -7,28 +7,28 @@ using namespace std;
 
 
 // broute force
-// vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-//     vector<int> temp;
-//     for(int i = 0 ; i < nums1.size(); i++){
-//         bool found = false;
-//         for(int j = 0; j < nums2.size();j++){
-//             if(nums1[i] == nums2[j]){
-//                 for(int k = j + 1; k < nums2.size();k++){
-//                     if(nums1[i] < nums2[k]){
-//                         temp.push_back(nums2[k]);
-//                         found = true;
-//                         break;
-//                     }
-//                 }
-//                 if(!found){
-//                     temp.push_back(-1);
-//                 }
-//                 break;
-//             }
-//         }
-//     }
-//     return temp;
-// }
+vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> temp;
+    for(int i = 0 ; i < nums1.size(); i++){
+        bool found = false;
+        for(int j = 0; j < nums2.size();j++){
+            if(nums1[i] == nums2[j]){
+                for(int k = j + 1; k < nums2.size();k++){
+                    if(nums1[i] < nums2[k]){
+                        temp.push_back(nums2[k]);
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    temp.push_back(-1);
+                }
+                break;
+            }
+        }
+    }
+    return temp;
+}
 
 
 
