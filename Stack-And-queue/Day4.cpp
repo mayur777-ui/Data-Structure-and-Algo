@@ -7,11 +7,7 @@ using namespace std;
 
 
 // broute force
-<<<<<<< HEAD
 vector<int> nextGreaterElements(vector<int>& nums1, vector<int>& nums2) {
-=======
-vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
->>>>>>> fa3a78c196ae349f3fa5c2e1523f7fe555fb945e
     vector<int> temp;
     for(int i = 0 ; i < nums1.size(); i++){
         bool found = false;
