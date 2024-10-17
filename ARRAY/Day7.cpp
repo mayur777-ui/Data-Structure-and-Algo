@@ -79,7 +79,7 @@ int main() {
 
 
 
-for mixed lower + upper both
+// for mixed lower + upper both
 
 int main(){
     string s;
@@ -98,8 +98,7 @@ int main(){
     }
 }
 
-
-using map function
+// using map function
 
 int main(){
     int n;
@@ -120,5 +119,30 @@ int main(){
         // fetch:
         cout << m[number] << endl;
     }
+}
+
+
+// to print all subarray of given array 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> arr = {1, 3, 0, 5, 2};
+    int n = arr.size();
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            cout << "[";
+            for (int k = i; k <= j; k++) {
+                cout << arr[k];
+                if (k != j) cout << ", "; 
+            }
+            cout << "] ";
+        }
+        cout << endl; 
+    }
+
+    return 0;
 }
  
