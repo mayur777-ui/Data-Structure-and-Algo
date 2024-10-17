@@ -202,7 +202,7 @@ int main() {
 }
 
 // sum of subarray ranges
-
+// Broute force
 class Solution {
 public:
     long long subArrayRanges(vector<int>& nums) {
@@ -228,3 +228,7 @@ int main(){
     long long sum = subArrayRanges(n);
     cout << sum;
 }
+
+
+// Optimal approach
+
