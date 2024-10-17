@@ -201,6 +201,30 @@ int main() {
     return 0;
 }
 
+// sum of subarray ranges
+
+class Solution {
+public:
+    long long subArrayRanges(vector<int>& nums) {
+        int n = nums.size();
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            int minval = nums[i];
+            int maxval = nums[i];
+            for(int j = i; j < n; j++){
+                minval = min(minval,nums[j]);
+                maxval = max(maxval,nums[j]);
+                sum += (long long)(maxval-minval);
+          }
+        }
+        return sum;
+    }
+};
 
 
-
+int main(){
+    Solution s;
+    vector<int> n {1,2,3};
+    long long sum = subArrayRanges(n);
+    cout << sum;
+}
