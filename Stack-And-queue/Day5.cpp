@@ -202,9 +202,13 @@ using namespace std;
 // }
 
 // sum of subarray ranges
+<<<<<<< HEAD
 
 
 // Broute force approach
+=======
+// Broute force
+>>>>>>> fe6415e70ec4e6f874cb229059633d373b858d43
 class Solution {
 public:
     long long subArrayRanges(vector<int>& nums) {
@@ -230,3 +234,7 @@ int main(){
     long long sum = s.subArrayRanges(n);
     cout << sum;
 }
+
+
+// Optimal approach
+
