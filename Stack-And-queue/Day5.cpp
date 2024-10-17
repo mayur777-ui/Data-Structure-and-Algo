@@ -86,3 +86,77 @@ int main() {
   arr = {0,1,0,2,1,0,1,3,2,1,2,1};
   cout << "The water that can be trapped is " << trap(arr) << endl;
 }
+
+
+
+
+
+// min sum of subarray
+
+
+// broute forec
+int main() {
+    vector<int> arr = {1, 3, 0, 5, 2};
+    int n = arr.size();
+        int total = 0;
+        const int MOD = 1e9 + 7; 
+        for(int i = 0; i < n; i++) {
+            int cmin = arr[i];
+            for(int j = i; j < n; j++) {
+                cmin = min(cmin, arr[j]);
+                total = (total + cmin) % MOD;
+            }
+        }
+    cout << total;
+
+    return 0;
+}
+
+
+// optimal approach
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> left(n, -1), right(n, n);
+        stack<int> st;
+
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && arr[st.top()] > arr[i]) {
+                right[st.top()] = i;
+                st.pop();
+            }
+            st.push(i);
+        }
+
+        while (!st.empty()) st.pop();
+
+        for (int i = n - 1; i >= 0; --i) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) {
+                left[st.top()] = i;
+                st.pop();
+            }
+            st.push(i);
+        }
+
+        long long total = 0;
+        int mod = 1e9 + 7;
+        
+        for (int i = 0; i < n; ++i) {
+            total = (total + (long long)arr[i] * (i - left[i]) * (right[i] - i)) % mod;
+        }
+
+        return (int)total;
+    }
+};
+
+int main(){
+    Solution s;
+    vector<int> arr = {3, 1, 2, 4};
+
+    int ans = s.sumSubarrayMins(arr);
+    cout << ans;
+}
+
+
+
