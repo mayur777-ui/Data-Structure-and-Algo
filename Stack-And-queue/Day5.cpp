@@ -160,3 +160,47 @@ int main(){
 
 
 
+
+// Asteroid collisions 
+
+int main() {
+    vector<int> as {-10, 2, -8};  
+    stack<int> st;
+    
+    for (int i = 0; i < as.size(); ++i) {
+        bool isPushed = false;
+        while (!st.empty() && st.top() > 0 && as[i] < 0){
+            if (abs(st.top()) < abs(as[i])) {
+                st.pop();
+            } else if (abs(st.top()) == abs(as[i])) {
+                st.pop();
+                isPushed = true;
+                break;
+            } else {
+                isPushed = true;
+                break;
+            }
+        }
+        if (!isPushed) {
+            st.push(as[i]);
+        }
+    }
+
+    stack<int> resultStack;
+    while (!st.empty()) {
+        resultStack.push(st.top());
+        st.pop();
+    }
+    
+    while (!resultStack.empty()) {
+        cout << resultStack.top() << " ";
+        resultStack.pop();
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+
+
