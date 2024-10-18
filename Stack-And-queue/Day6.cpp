@@ -77,8 +77,4 @@ int main(){
     string num = "1432219";
     int k = 3;
     cout << s.removeKdigits(num,k) << endl;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 15af2d934aae05b8e61dbd4e727c5ef7e859b25f
