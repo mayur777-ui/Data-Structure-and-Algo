@@ -150,3 +150,14 @@ int main(){
 }
 
 
+// Traversal through an circular arr;
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    vector<int> v {61,4,2,4,6,33,56,2};
+    int n = v.size();
+    for (int i = 0; i < 2 * n; i++) { 
+        cout << v[i%n] << " ";
+    }
+}
+
