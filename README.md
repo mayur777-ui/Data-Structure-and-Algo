@@ -11,6 +11,13 @@ Welcome to my repository dedicated to tracking my progress in learning <strong>D
 - [Technologies Used](#technologies-used)
 - [Contributions](#contributions)
 
+
+
+## <span style="color: #2196F3; font-weight: bold;">
+![Description of the image](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230807133054/Data-structure-algorithm.png)
+</span>
+
+
 ## <span style="color: #2196F3; font-weight: bold;">About Me</span>
 <p style="color: #333; line-height: 1.6;">
 I am a passionate learner in the field of programming and software development. This repository will help me document my learning process in DSA with C++, enhancing my understanding and skills as I tackle various challenges.
