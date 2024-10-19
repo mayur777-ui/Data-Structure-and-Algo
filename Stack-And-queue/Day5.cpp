@@ -230,4 +230,3 @@ int main(){
 }
 
 
-// Optimal approach
