@@ -15,6 +15,159 @@ struct Node {
 
 
 
+// INSERTION AT BEGINNING 
+Node* insertAtBeginning(Node* last, int value){
+    
+    Node* newNode = new Node(value);
+
+    
+    
+    if (last == nullptr) {
+        newNode->next = newNode;
+        return newNode;
+    }
+
+    
+    newNode->next = last->next;
+    last->next = newNode;
+
+    return last;
+}
+
+// INSERTION AT END
+Node* insertAt_end(Node* last, int val){
+    Node* newNode = new Node(val);
+    if(last == nullptr){
+        newNode->next = newNode;
+        last = newNode;
+        return last;
+    }
+
+    newNode->next = last->next;
+    last->next = newNode;
+    last = newNode;
+    return last;
+}
+
+// INSERTION AT ANY POSITION
+Node* insertAt_any_pos(Node* last,int val,int pos){
+    if(last == nullptr){
+        if(pos != 1){
+            return last;
+        }
+        Node* nptr = new Node(val);
+        nptr->next = nptr;
+        last = nptr;
+        return last;
+    }
+
+    if(pos == 1){
+        Node* nptr = new Node(val);
+        nptr->next = last->next;
+        last->next = nptr;
+        return last;
+    }
+
+    Node* head = last->next;
+    int cnt = 0;
+    Node* nptr = new Node(val);
+    while(true){
+        cnt++;
+        if(cnt == pos - 1){
+            break;
+        }
+        head = head->next;
+        if(head == last->next){
+            cout << "position is out of bound!" << endl;
+            return last;
+        }
+    }
+    nptr->next = head->next;
+    head->next = nptr;
+    if(head == last){
+        last = nptr;
+    }
+    return last;
+    
+}
+
+
+
+Node* delete_at_beginning(Node* last){
+    if(last == nullptr){
+        return last;
+    }
+
+    Node* head = last->next;
+    if(head == last){
+        delete last;
+        last = nullptr;
+        return last;
+    }else{
+        last->next = head->next;
+        delete head;
+        return last;
+    }
+}
+
+
+
+Node* delete_at_end(Node* last){
+    if(last == nullptr){
+        return last;
+    }
+    
+    Node* head = last->next;
+    if(head == last){
+        delete last;
+        last ==  nullptr;
+        return last;
+    }else{
+        Node* temp = head;
+        while(temp->next != last){
+            temp = temp->next;
+        }
+        temp->next = head;
+        delete last;
+        last = temp;
+        return last;
+    }
+}
+
+Node* Deleteion_at_any_position(Node* last, int pos) {
+    if (last == nullptr) {
+        return last;
+    }
+    Node* head = last->next;
+    if (pos == 1) {
+        if (head == last) {
+            delete last;
+            return nullptr;
+        }
+        last->next = head->next;
+        delete head;
+        return last;
+    }
+    Node* curr = head;
+    int cnt = 1;
+    Node* pre = nullptr;
+    while (cnt < pos && curr != last) { 
+        pre = curr;
+        curr = curr->next;
+        cnt++;
+    }
+    if (cnt != pos) {
+        return last;
+    }
+    pre->next = curr->next;
+    if (curr == last) {
+        last = pre;
+    }
+    delete curr;
+    return last;
+}
+
+
 
 
 void printList(Node* last){
