@@ -1,5 +1,4 @@
-//1. INFIX TO POSTFIX;
-
+// 1. INFIX TO POSTFIX
 #include<bits/stdc++.h>
 using namespace std;
 int prec(char c){
@@ -19,7 +18,6 @@ void infixToPostfix(string s){
     stack<char> st;
     int i = 0;
     string post = "";
-    // int n = s.length();
     for (int i = 0; i < s.length(); i++) {
         char ch = s[i];
         if((ch >= 'A' && ch  <= 'Z') || (ch  >= 'a' && ch <= 'z') || (ch  >= '0' && ch  <= '9')){
@@ -54,14 +52,12 @@ int main() {
   string exp = "(p+q)*(m-n)";
   cout << "Infix expression: " << exp << endl;
   infixToPostfix(exp);
-  return 0;
 }
 
 
 
 
-
-//2. INFIX TO PREFIX;
+// 2. INFIX TO PREFIX
 int prec(char c){
     if(c == '+' || c == '-'){
         return 1;
@@ -75,7 +71,7 @@ int prec(char c){
     }
 }
 
-void prefixToPostfix(string s){
+void infixToPrefix(string s){
     stack<char> st;
     string post = "";
     reverse(s.begin(),s.end());
@@ -118,16 +114,13 @@ void prefixToPostfix(string s){
 int main() {
   string exp = "(p+q)*(m-n)";
   cout << "Infix expression: " << exp << endl;
-  prefixToPostfix(exp);
+  infixToPrefix(exp);
   return 0;
 }
 
 
-
-
-
-//3. POSTFIX TO INFIX
-void PostfixToinfix(string s) {
+// 3. POSTFIX TO INFIX
+void PostfixToInfix(string s) {
     stack<string> st;
     int i = 0;
     int n = s.length();
@@ -150,14 +143,12 @@ void PostfixToinfix(string s) {
 int main() {
     string exp = "AB+C*";
     cout << "Postfix expression: " << exp << endl;
-    PostfixToinfix(exp);
+    PostfixToInfix(exp);
     return 0;
 }
 
 
-
-
-//4. POSTFIX TO PREFIX
+// 4. POSTFIX TO PREFIX
 void PostfixToPrefix(string s) {
     stack<string> st;
     int i = 0;
@@ -186,9 +177,7 @@ int main() {
 }
 
 
-
-
-//5. PREFIX TO INFIX
+// 5. PREFIX TO INFIX
 void PrefixToInfix(string s) {
     stack<string> st;
     int i = s.length() - 1;
@@ -196,7 +185,7 @@ void PrefixToInfix(string s) {
         if(isalnum(s[i])) {
             st.push(string(1, s[i]));
         }else {
-             if (st.size() < 2) {
+            if (st.size() < 2) {
                 cout << "Invalid prefix expression." << endl;
                 return;
             }
@@ -214,14 +203,13 @@ void PrefixToInfix(string s) {
 
 int main() {
     string exp = "*+AB-CD";
-    cout << "Postfix expression: " << exp << endl;
+    cout << "Prefix expression: " << exp << endl;
     PrefixToInfix(exp);
     return 0;
 }
 
 
 // 6. PREFIX TO POSTFIX
-
 void PrefixToPostfix(string s) {
     stack<string> st;
     int i = s.length() - 1;
@@ -229,7 +217,7 @@ void PrefixToPostfix(string s) {
         if(isalnum(s[i])) {
             st.push(string(1, s[i]));
         }else {
-             if (st.size() < 2) {
+            if (st.size() < 2) {
                 cout << "Invalid prefix expression." << endl;
                 return;
             }
@@ -247,7 +235,7 @@ void PrefixToPostfix(string s) {
 
 int main() {
     string exp = "*+AB-CD";
-    cout << "Postfix expression: " << exp << endl;
+    cout << "Prefix expression: " << exp << endl;
     PrefixToPostfix(exp);
     return 0;
 }
