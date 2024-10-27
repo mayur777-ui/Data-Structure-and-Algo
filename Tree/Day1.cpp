@@ -20,6 +20,7 @@ TreeNode* convertotree(vector<int>&arr,int i){
     TreeNode* root = new TreeNode(arr[i]);
     root->left = convertotree(arr,2*i+1);
     root->right = convertotree(arr,2*i+2);
+    return root;
 }
 
 // DFS TRAVERSAL
@@ -61,7 +62,7 @@ vector<vector<int>> leveltraversal(TreeNode* root){
             TreeNode* node =q.front();
             q.pop();
             level.push_back(node->data);
-            if(node->left){
+            if(node->left != nullptr){
                 q.push(node->left);
             }
             if(node->right != nullptr){
@@ -73,7 +74,46 @@ vector<vector<int>> leveltraversal(TreeNode* root){
     return res;
 }
 
+// PreOrder by using stack
+vector<int> preorderwithstact(TreeNode* root) {
+    vector<int> temp;
+    if (root == nullptr) {
+        return temp;
+    }
+    stack<TreeNode*> st;
+    st.push(root);
+    while (!st.empty()) {
+        TreeNode* node = st.top();
+        st.pop();
+        temp.push_back(node->data);
+        if (node->right != nullptr) {
+            st.push(node->right);
+        }
+        if (node->left != nullptr) {
+            st.push(node->left);
+        }
+    }
+    return temp;
+}
 
+// Inorder traversal using stack
+vector<int> inorderwithstack(TreeNode*root){
+    vector<int> temp;
+    if(root == nullptr) return temp;
+    stack<TreeNode*> st;
+    TreeNode* curr = root;
+   while (curr != nullptr || !st.empty()) {
+       while(curr != nullptr){
+            st.push(curr);
+            curr = curr->left;
+       }
+       curr = st.top();
+       st.pop();
+       temp.push_back(curr->data);
+       curr = curr->right;
+    }
+    return temp;
+}
 void printVector(const vector<int>& vec) {
     for (int num : vec) {
         cout << num << " ";
@@ -90,6 +130,11 @@ int main(){
     inorder(root);
 
     vector<vector<int>> ans = leveltraversal(root);
+    vector<int> res = preorderwithstact(root);
+    printVector(res);
+
+    vector<int> res = inorderwithstack(root);
+    printVector(res);
     for(const vector<int>& level : ans){
         printVector(level);
     }
