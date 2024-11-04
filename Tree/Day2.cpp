@@ -14,8 +14,6 @@ public:
 
 
 
-<<<<<<< HEAD
-=======
 TreeNode* sortedArrayToBST(vector<int>& arr, int start, int end) {
      if (start > end) {
         return nullptr;
@@ -44,7 +42,6 @@ bool searchelemt(TreeNode* root, int key) {
 }
 
 
->>>>>>> 501e1d4bb74d80c7c1e3631edf16143077509890
 
 
 void inOrderTraversal(TreeNode* root) {
