@@ -59,6 +59,24 @@ TreeNode* insertioninbst(TreeNode* root,int key){
     return root;
 
 }
+TreeNode* insertioninbst(TreeNode* root,int key){
+    if(root == nullptr){
+        return new TreeNode(key);
+    }
+    if(root->val == key){
+        cout << "Node should be uniqe!";
+        return root;
+    }
+
+    if(root->val < key){
+        root->right = insertioninbst(root->left,key);
+    }else{
+        root->left = insertioninbst(root->left, key);
+    }
+
+    return root;
+
+}
 
 
 void inOrderTraversal(TreeNode* root) {
@@ -85,6 +103,11 @@ int main() {
     }else{
         cout << "key not found!";
     }
+    int val;
+    cout <<"enter the val for inserting: ";
+    cin >> val;
+    root = insertioninbst(root,val);
+    inOrderTraversal(root);
     int val;
     cout <<"enter the val for inserting: ";
     cin >> val;
