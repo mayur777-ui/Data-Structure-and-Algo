@@ -51,7 +51,7 @@ TreeNode* insertioninbst(TreeNode* root,int key){
     }
 
     if(root->val < key){
-        root->right = insertioninbst(root->left,key);
+        root->right = insertioninbst(root->right,key);
     }else{
         root->left = insertioninbst(root->left, key);
     }
@@ -68,6 +68,42 @@ void inOrderTraversal(TreeNode* root) {
     inOrderTraversal(root->left);
     cout << root->val << " ";
     inOrderTraversal(root->right);
+}
+
+// Deletion in BST
+TreeNode* inordersuc(TreeNode* root){
+    TreeNode* curr =root;
+    while(curr && curr->left != nullptr){
+        curr = curr->left;
+    }
+    return curr;
+}
+
+
+TreeNode* DeletionInBst(TreeNode* root,int key){
+    if(root == nullptr){
+        return root;
+    }
+    if(root->val < key){
+        root->right = DeletionInBst(root->right,key);
+
+    }else if(root->val > key){
+        root->left = DeletionInBst(root->left,key);
+    }else{
+        if(root->left == nullptr){
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+        }else if(root->right == nullptr){
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+        }
+        TreeNode*temp = inordersuc(root->right);
+        root->val = temp->val;
+        root->right = DeletionInBst(root->right,temp->val);
+    }
+    return root;
 }
 
 int main() {
@@ -89,6 +125,9 @@ int main() {
     cout <<"enter the val for inserting: ";
     cin >> val;
     root = insertioninbst(root,val);
+    inOrderTraversal(root);
+    cout<< "\nDeleting given key: \n";
+    DeletionInBst(root,3);
     inOrderTraversal(root);
     return 0;
 }
