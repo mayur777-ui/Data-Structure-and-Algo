@@ -18,6 +18,7 @@ Node* converttotree(vector<int>arr,int i){
     return root;
 }
 
+
 // Level traversal 2.
 void traversal(Node* root){
     if(root == nullptr) return;
@@ -33,6 +34,7 @@ void traversal(Node* root){
     }
     
 }
+
 
 
 int main() {
