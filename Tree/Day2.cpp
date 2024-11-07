@@ -78,32 +78,42 @@ TreeNode* inordersuc(TreeNode* root){
     }
     return curr;
 }
-
-
-TreeNode* DeletionInBst(TreeNode* root,int key){
-    if(root == nullptr){
+TreeNode* DeletionInBst(TreeNode* root, int key) {
+    // Base case: if the tree is empty, return null
+    if (root == nullptr) {
         return root;
     }
-    if(root->val < key){
-        root->right = DeletionInBst(root->right,key);
 
-    }else if(root->val > key){
-        root->left = DeletionInBst(root->left,key);
-    }else{
-        if(root->left == nullptr){
+    // Step 1: Find the node to delete
+    if (root->val < key) { // The key is greater than root's value
+        root->right = DeletionInBst(root->right, key);
+    } else if (root->val > key) { // The key is smaller than root's value
+        root->left = DeletionInBst(root->left, key);
+
+    } else { // root->val == key, so we found the node to delete
+
+        // Case 1: Node with only one child or no child
+        if (root->left == nullptr) {
             TreeNode* temp = root->right;
-            delete root;
-            return temp;
-        }else if(root->right == nullptr){
+            delete root; // Delete the current node
+            return temp; // Return the subtree without this node
+        } else if (root->right == nullptr) {
             TreeNode* temp = root->left;
             delete root;
             return temp;
         }
-        TreeNode*temp = inordersuc(root->right);
+
+        // Case 2: Node with two children
+        // Get the inorder successor (smallest in the right subtree)
+        TreeNode* temp = inordersuc(root->right);
+        
+        // Copy the inorder successor's value to the current node
         root->val = temp->val;
-        root->right = DeletionInBst(root->right,temp->val);
+
+        // Delete the inorder successor
+        root->right = DeletionInBst(root->right, temp->val);
     }
-    return root;
+    return root; // Return the (possibly updated) root
 }
 
 int main() {
@@ -126,8 +136,11 @@ int main() {
     cin >> val;
     root = insertioninbst(root,val);
     inOrderTraversal(root);
+    cout << "Enter key which is persent in bst and you want to delete: ";
+    int n;
+    cin >> n;
+    DeletionInBst(root,n);
     cout<< "\nDeleting given key: \n";
-    DeletionInBst(root,3);
     inOrderTraversal(root);
     return 0;
 }
