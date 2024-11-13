@@ -86,6 +86,10 @@ bool checkBalance(Node* root){
 
 //Approach 2.
 
+bool checkBalance(Node* root){
+
+
+}
 int main() {
     vector<int> arr = {1, 2, 12, 34, 13, 21, 32, 23};
     Node* root = converttotree(arr, 0); 
