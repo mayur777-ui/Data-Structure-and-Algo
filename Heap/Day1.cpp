@@ -22,15 +22,7 @@ class MaxHeap{
         int index = size;
         heap[index] = value;
         size++;
-        while(index > 0){
-            int parent = (index - 1)/2;
-            if(heap[index] > heap[parent]){
-                swap(heap[index],heap[parent]);
-                index = parent;
-            }else{
-                break;
-            }
-        }
+         
     } 
     void heapify(int i){
         int largest = i;
