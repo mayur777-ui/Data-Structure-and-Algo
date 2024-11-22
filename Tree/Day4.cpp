@@ -32,7 +32,7 @@ int findFloor(Node* root, int key) {
     return floor;
 }
 
-
+// ciel
 int findCeil(Node* root, int key) {
     int floor = -1;
     while (root) {
@@ -50,6 +50,26 @@ int findCeil(Node* root, int key) {
 }
 
 
+
+// Kth-smallest num;
+void kthsmallestinbst(Node* root,int k,int &count,int &result){
+      if (!root || count >= k) return;
+    kthsmallestinbst(root->left, k, count, result);
+    count++;
+    if(count == k){
+        result = root->data;
+        return;
+    }
+
+    kthsmallestinbst(root->right,k,count,result);
+}
+
+
+int kthSmallest(Node* root, int k) {
+    int count = 0, result = -1;
+   kthsmallestinbst(root, k, count, result);
+    return result;
+}
 
 Node* insert(Node* root, int key) {
     if (!root) return new Node(key);
@@ -70,10 +90,11 @@ int main() {
     root = insert(root, 10);
     root = insert(root, 14);
 
-    int key = 5;
-
-    cout << "Floor of " << key << " is " << findFloor(root, key) << endl;
-    cout << "Ceil of " << key << " is " << findCeil(root, key) << endl;
+    int k;
+    cin >> k;
+    cout << "The " << k << "rd smallest element is " << kthSmallest(root, k) << endl;
+    // cout << "Floor of " << key << " is " << findFloor(root, key) << endl;
+    // cout << "Ceil of " << key << " is " << findCeil(root, key) << endl;
 
     return 0;
 }
