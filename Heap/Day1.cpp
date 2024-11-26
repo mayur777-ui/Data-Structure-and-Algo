@@ -1,86 +1,107 @@
-// Implementation of heap
-#include<bits/stdc++.h>
+// // Implementation of heap
+#include <iostream>
 using namespace std;
 
-
-class MaxHeap{
+class MaxHeap {
     int* heap;
     int size;
     int total_size;
-    public:
-    MaxHeap(int n){
+
+public:
+    // Constructor
+    MaxHeap(int n) {
         heap = new int[n];
         size = 0;
         total_size = n;
     }
-    // Insert into the heap;
-    void insert(int value){
-        if(size >= total_size){
+
+    // Destructor
+    ~MaxHeap() {
+        delete[] heap;
+    }
+
+    // Insert element into the heap
+    void insert(int value) {
+        if (size >= total_size) {
             cout << "Heap Overflow\n";
             return;
         }
         int index = size;
         heap[index] = value;
         size++;
-        int parent = (index - 1)/2;
-        while(index > 0 && heap[parent] < heap[index]){
+
+        // Up-heapify
+        int parent = (index - 1) / 2;
+        while (index > 0 && heap[parent] < heap[index]) {
             swap(heap[parent], heap[index]);
             index = parent;
+            parent = (index - 1) / 2; 
         }
+    }
 
-    } 
-    void heapify(int i){
+    // Heapify to restore max-heap property
+    void heapify(int i) {
         int largest = i;
-        int Left = 2 * i + 1;
+        int left = 2 * i + 1;
         int right = 2 * i + 2;
-        if(Left < size && heap[largest] < heap[Left]){
-            largest = Left;
-        }
 
-        if(right < size && heap[largest] < heap[right]){
+        if (left < size && heap[largest] < heap[left]) {
+            largest = left;
+        }
+        if (right < size && heap[largest] < heap[right]) {
             largest = right;
         }
 
-        if(largest != i){
-            swap(heap[largest],heap[i]);
+        if (largest != i) {
+            swap(heap[largest], heap[i]);
             heapify(largest);
         }
     }
-    void deleteion(){
-        if(size == 0){
+
+    // Delete the root element
+    void deletion() {
+        if (size == 0) {
             cout << "Heap is empty\n";
             return;
         }
         heap[0] = heap[size - 1];
         size--;
-        int index = 0;
-        heapify(index);
-
-
+        heapify(0);
     }
-    void print(){
-        for(int i = 0; i < size; i++){
-            cout <<heap[i] << " "; 
+
+    // Print the heap
+    void print() {
+        for (int i = 0; i < size; i++) {
+            cout << heap[i] << " ";
         }
         cout << endl;
     }
-
-
 };
 
-int main(){
+int main() {
     int n;
+    cout << "Enter the number of elements: ";
     cin >> n;
+
     MaxHeap heap(n);
-    for(int i = 0; i < n; i++){
-        int s;
-        cin >> s;
-        heap.insert(s);
+    cout << "Enter the elements: ";
+    for (int i = 0; i < n; i++) {
+        int value;
+        cin >> value;
+        heap.insert(value);
     }
+
+    cout << "Heap elements: ";
     heap.print();
-    heap.deleteion();
+
+    cout << "After deletion of root: ";
+    heap.deletion();
     heap.print();
+
+    return 0;
 }
+
+
 
 
 // By an given arr making an  heap
@@ -124,7 +145,7 @@ void print(int arr[], int n){
 
 int main(){
     int arr[] = {10,3 ,8 ,9 ,5, 13 ,18 , 14 , 11 ,70};
-    // builtheap(arr,10);
+    builtheap(arr,10);
     heapsort(arr,10);
     print(arr,10);
 }
