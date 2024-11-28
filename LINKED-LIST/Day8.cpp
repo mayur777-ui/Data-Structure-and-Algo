@@ -1,3 +1,87 @@
+// Reverse Linked list first k nodes
+#include<iostream>
+using namespace std;
+class Node {
+public:
+    int data;   
+    Node* next;      
+
+    Node(int data1, Node* next1) {
+        data = data1;
+        next = next1;
+    }
+
+    Node(int data1) {
+        data = data1;
+        next = nullptr;
+    }
+};
+
+Node* reverse(Node *head)
+{
+   Node* temp = head;  
+   Node* prev = NULL;  
+   
+   while(temp != NULL){  
+       Node* front = temp->next;  
+       temp->next = prev;  
+       prev = temp;  
+       temp = front; 
+   }
+   
+   return prev;  
+}
+
+Node* firstreverseKNodes(Node* head, int k) {
+    //Type your code here
+    Node* temp = head;
+    int cnt = 1;
+    while(temp->next != nullptr && cnt != k){
+        temp = temp->next;
+        cnt++;
+    }
+    
+    Node* to_next = temp->next;
+    temp->next = nullptr;
+    Node* new_Node = reverse(head);
+    temp = new_Node;
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+    
+    temp->next = to_next;
+    return new_Node;
+}
+
+
+
+void printLinkedList(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    Node* head = new Node(5);
+    head->next = new Node(4);
+    head->next->next = new Node(3);
+    head->next->next->next = new Node(7);
+    head->next->next->next->next = new Node(9);
+    head->next->next->next->next->next = new Node(2);
+
+    cout << "Original Linked List: ";
+    printLinkedList(head);
+    head = firstreverseKNodes(head,4);
+    cout << "Reversed Linked List: ";
+    printLinkedList(head);
+}
+
+
+
+
 // Reverse Linked List in groups of Size K
 #include <iostream>
 #include <bits/stdc++.h>
