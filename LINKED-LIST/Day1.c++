@@ -110,7 +110,7 @@ void delete_at_end(Node* head){
     }
 }
 // 3.delete_at_any_position
-Node* deletion_at_pos(Node* head, int pos) {
+Node* delete_at_any_position(Node* head, int pos) {
     if (head == nullptr) {
         cout << "List is empty." << endl;
         return head;
