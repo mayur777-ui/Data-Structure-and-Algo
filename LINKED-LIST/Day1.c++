@@ -110,16 +110,18 @@ void delete_at_end(Node* head){
     }
 }
 // 3.delete_at_any_position
-Node* delete_at_any_position(Node* head, int pos) {
+Node* deletion_at_pos(Node* head, int pos) {
     if (head == nullptr) {
         cout << "List is empty." << endl;
         return head;
     }
+
     if (pos < 1) {
         cout << "Position is invalid." << endl;
         return head;
     }
 
+    // Handle deletion of the first node
     if (pos == 1) {
         Node* temp = head;
         head = head->next;
@@ -128,28 +130,28 @@ Node* delete_at_any_position(Node* head, int pos) {
     }
 
     Node* temp = head;
-    Node* pre = nullptr;
-    int cnt = 0;
+    int cnt = 1;
 
-    while (temp != nullptr) {
-        cnt++;
-        if (cnt == pos) {
-            break;
-        }
-        pre = temp;
+    // Traverse to the node just before the target position
+    while (temp != nullptr && cnt < pos - 1) {
         temp = temp->next;
+        cnt++;
     }
 
-    if (temp == nullptr) {
+    // Check if the position is valid
+    if (temp == nullptr || temp->next == nullptr) {
         cout << "Position is out of bounds." << endl;
         return head;
     }
 
-    pre->next = temp->next;
-    delete temp;
+    // Delete the target node
+    Node* to_delete = temp->next;
+    temp->next = to_delete->next;
+    delete to_delete;
 
     return head;
 }
+
 
 
 int main(){
