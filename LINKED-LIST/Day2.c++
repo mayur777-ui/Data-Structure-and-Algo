@@ -125,35 +125,45 @@ void insert_at_end(Node*& head, int data){
 }
 
 // insert at_any_position
-void at_any_position(Node*& head,int data,int pos){
+void at_any_position(Node*& head, int data, int pos) {
+    // Create a new node
     Node* nptr = new Node(data);
-    Node* temp = head;
-    int cnt = 0;
-    while(temp->next != nullptr){
-        cnt++;
-        if(cnt == pos){
-           break;
-        }
-        temp = temp->next;
-    }
-    Node* pre = temp->prev;
-    Node* front = temp->next;
-    if(pre == nullptr && front == nullptr){
-        return;
-    }
-    if(pre == nullptr){
-        insert_at_head(head,data);
-        return;
-    }
-    if(front == nullptr){
-        insert_at_end(head,data);
-        return;
-    }
-    pre->next = nptr;
-    temp->prev= nptr;
-    nptr->next = temp;
-    nptr->prev = pre;
 
+    // Special case: insert at the head
+    if (pos == 1) {
+        nptr->next = head;
+        if (head != nullptr) {
+            head->prev = nptr;
+        }
+        head = nptr;
+        return;
+    }
+
+    // Traverse to the position
+    Node* temp = head;
+    int cnt = 1;
+
+    // Traverse until position or end of the list
+    while (temp != nullptr && cnt < pos - 1) {
+        temp = temp->next;
+        cnt++;
+    }
+
+    // If position is greater than the list length
+    if (temp == nullptr) {
+        cout << "Position out of bounds!" << endl;
+        delete nptr; // Prevent memory leak
+        return;
+    }
+
+    // Insert in the middle or at the end
+    nptr->next = temp->next;
+    nptr->prev = temp;
+
+    if (temp->next != nullptr) { // If not inserting at the end
+        temp->next->prev = nptr;
+    }
+    temp->next = nptr;
 }
 
 
