@@ -18,8 +18,8 @@ bool isValid(string s){
                 return false;
             }
         }
-        return st.empty();
     }
+    return st.empty();
 };
 
 int main()
