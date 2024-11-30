@@ -193,7 +193,7 @@ int  main(){
         }
     }
 
-    cout << "After selection sort: " << endl;
+    cout << "After insertion sort: " << endl;
     for(int i = 0; i < n; i++){
         cout << arr[i] << " ";
     }
