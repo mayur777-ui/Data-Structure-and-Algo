@@ -2,7 +2,7 @@
 using namespace std;
 
 
-1.Approach 1(two loop broute force)
+// 1.Approach 1(two loop broute force)
 int lengthOfLongestSubstring(string s) {
     if(s.length() == 0){
         return 0;
@@ -21,7 +21,7 @@ int lengthOfLongestSubstring(string s) {
     return len;
 }
 
-
+// Approach 2 (optimal with two pointer)
 int lengthOfLongestSubstring(string s) {
     int l = 0;
     unordered_set <char> set;
