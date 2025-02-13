@@ -1,4 +1,4 @@
-Find the number that appears once, and the other numbers twice
+// Find the number that appears once, and the other numbers twice
 
 
 #include <bits/stdc++.h>
@@ -26,7 +26,7 @@ int main()
 
 
 
-Longest Subarray with given Sum K(Positives)
+// Longest Subarray with given Sum K(Positives)
 
 Soulution 1;
 
@@ -63,7 +63,7 @@ int main(){
 
 
 
-Approach.2
+// Approach.2
 
 #include <iostream>
 #include<bits/stdc++.h>
@@ -126,7 +126,7 @@ int main(){
 
 
 
-getmaxsublen
+// getmaxsublen
 
 #include <iostream>
 using namespace std;
@@ -220,7 +220,7 @@ int main() {
 
 
 
-FINDIN sub arr with maximum sum
+//////FINDIN sub arr with maximum sum
 
 #include <bits/stdc++.h>
 using namespace std;
