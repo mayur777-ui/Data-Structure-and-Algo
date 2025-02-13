@@ -87,9 +87,9 @@ bool checkSortedAndRotated(vector<int>& nums) {
 int main() {
     vector<int> nums = {3, 4, 5, 1, 2};
     bool result = checkSortedAndRotated(nums);
-//     cout << (result ? "true" : "false") << endl;
-//     return 0;
-// }
+    cout << (result ? "true" : "false") << endl;
+    return 0;
+}
 
 
 
