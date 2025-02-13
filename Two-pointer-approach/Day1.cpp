@@ -2,20 +2,19 @@
 using namespace std;
 
 int lengthOfLongestSubstring(string s) {
-    if (s.length() == 0) {
+    if(s.length() == 0){
         return 0;
     }
     int len = 0;
-    for (int i = 0; i < s.length(); i++) {
-        unordered_set<char> set; 
-        for (int j = i; j < s.length(); j++) {
-            if (set.find(s[j]) != set.end()) { 
+    for(int i = 0; i < s.length(); i++){
+        unordered_set<int> set;
+        for(int j = i; j < s.length(); j++){
+            if(set.find(s[j]) != set.end()){
                 len = max(len, j - i);
-                break; 
+                break;
             }
-            set.insert(s[j]); 
+            set.insert(s[j]);
         }
-        len = max(len, (int)set.size());
     }
     return len;
 }
