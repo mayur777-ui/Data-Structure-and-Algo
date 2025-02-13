@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+1.Approach 1(two loop broute force)
 int lengthOfLongestSubstring(string s) {
     if(s.length() == 0){
         return 0;
@@ -18,6 +20,25 @@ int lengthOfLongestSubstring(string s) {
     }
     return len;
 }
+
+
+int lengthOfLongestSubstring(string s) {
+    int l = 0;
+    unordered_set <char> set;
+    int maxSize = 0;
+    for(int r = 0; r < s.length(); r++){
+        if(set.find(s[r]) != set.end()){
+            while(l < r && set.find(s[r]) != set.end()){
+                set.erase(s[l]);
+                l++;
+            }
+        }
+        set.insert(s[r]);
+        maxSize = max(maxSize, r - l + 1);
+    }
+    return maxSize;
+}    
+
 
 int main() {
     string s;
