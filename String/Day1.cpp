@@ -95,7 +95,7 @@ int main() {
 
 
 
-// Understading the find function within c++
+// // Understading the find function within c++
 
 int main(){
     string str = "this is a sample string";
@@ -127,4 +127,67 @@ int main(){
         pos = str.find(target, pos + 1);
     }
 
+}
+
+// Defanging an IP Address
+#include<bits/stdc++.h>
+using namespace std;
+string defangIPaddr(string address) {
+    string res = "";
+    for(char ch:address){
+        if(ch == '.'){
+            res += "[" + string(1,ch) + "]";
+            // res += "[.];"
+        }else{
+            res += ch;
+        }
+    }
+    return res;
+}
+
+int main(){
+    string s;
+    getline(cin,s);
+    string res = defangIPaddr(s);
+    cout << res;
+}
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// Approach 1;
+bool rotateString(string s, string goal) {
+        if(s.size() != goal.size()){
+            return false;
+        }
+        for(int i = 0; i < s.size(); i++){
+            char ch = s[0];
+            s.erase(s.begin());
+            s.push_back(ch);
+            if(s == goal) return true;
+        }
+        return false;
+}
+
+// Approach 2
+// explanation=> if we do s+s then all of rotation of s is substring of s+s 
+
+bool rotateString(string s, string goal){
+    if(s.size() != goal.size()){
+        return false;
+    }
+    string con = s + s;
+    return con.find(goal) != string::npos;
+}
+int main(){
+    string s;
+    getline(cin,s);
+    string g;
+    getline(cin,g);
+    if( rotateString(s,g)){
+        cout << "after certain rotation \"" << s << "\" can be " << g;
+    }else{
+        cout << "can't obtain " << g << "on certain left rotation on " << s;
+    }
 }
