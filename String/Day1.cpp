@@ -191,3 +191,35 @@ int main(){
         cout << "can't obtain " << g << "on certain left rotation on " << s;
     }
 }
+
+
+
+
+// check Pangram
+#include<bits/stdc++.h>
+using namespace std;
+bool checkIfPangram(string sentence) {
+    if(sentence.size() < 26){
+        return false;
+    }
+    bool flag = false;
+    for(char ch : sentence){
+        if(ch >= 'a' && ch <= 'z'){
+            flag = true;
+        }else{
+            return false;
+        }
+    }
+    return flag;
+}
+
+
+int main(){
+    string s;
+    cin >> s;
+    if(checkIfPangram(s)){
+        cout << "true";
+    }else{
+        cout << "false";
+    }
+}
