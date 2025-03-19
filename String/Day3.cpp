@@ -93,3 +93,32 @@ int main(){
   string res = reverseWords(s);
   cout << res;
 }
+
+
+
+
+// is palindrom
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s =  "A man, a plan, a canal: Panama";
+    transform(s.begin(), s.end(), s.begin(), ::tolower);
+    string res ="";
+    for(char ch : s){
+        if(ch >= 'a' && ch <= 'z'){
+            res += ch;
+        }
+    }
+    int i = 0;
+    int j = res.size() - 1;
+    int flag = 0;
+    while(i < j){
+        if(res[i] != res[j]){
+            flag = 1;
+            break;
+        }
+        i++;
+        j--;
+    }
+    cout << (flag ? "No" : "Yas");
+}
