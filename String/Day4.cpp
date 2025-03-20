@@ -48,3 +48,31 @@ int main(){
     string res = InttoRoman(num);
     cout << res;
 }
+
+
+
+// Longest Substring Without Repeating Characters
+
+int lengthOfLongestSubstring(string s) {
+    int n = s.size();
+    int maxLen = 0;
+    
+    for (int i = 0; i < n; i++) {
+        set<char> st;
+        for (int j = i; j < n; j++) {
+            if (st.find(s[j]) != st.end()) {
+                break;
+            } else {
+                st.insert(s[j]);
+                maxLen = max(maxLen, j - i + 1);
+            }
+        }
+    }
+    return maxLen;
+}
+
+int main() {
+    string s = "pwwkew";
+    int rs = lengthOfLongestSubstring(s);
+    cout << rs << endl;
+}
