@@ -32,7 +32,7 @@ void traversal(Node* root) {
     cout << endl;
 }
 
-// Height of binary tree- Approach 1. (method level order traversal) 
+// // Height of binary tree- Approach 1. (method level order traversal) 
 int HeightofTree(Node* root) {
     if (root == nullptr) return 0;
     queue<Node*> q;
@@ -80,21 +80,48 @@ bool checkBalance(Node* root){
     int rh = HeightofTree(root->right);
 
     if(abs(lh - rh) <= 1 && checkBalance(root->left) && checkBalance(root->right)){
-        
+        return true;
     }
+    return false;
 }
 
-//Approach 2.
+// //Approach 2.
 
+
+int check(Node* root){
+    if(root == nullptr){
+        return 0;
+    }
+    int lh = check(root->left);
+    if(lh == -1){
+        return -1;
+    }
+    int rh = check(root->right);
+    if(rh == -1){
+        return -1;
+    }
+
+    if(abs(lh - rh) > 1){
+        return -1;
+    }
+
+    return max(lh,rh)+ 1;
+}
 bool checkBalance(Node* root){
-
-
+    if(root == nullptr){
+        return true;
+    }
+    return check(root) != -1;
 }
+
+
 int main() {
     vector<int> arr = {1, 2, 12, 34, 13, 21, 32, 23};
     Node* root = converttotree(arr, 0); 
     traversal(root);
     int height = HeightofTree(root);
     cout << "Height of the tree: " << height << endl;
+    bool isBalance = checkBalance(root);
+    cout << (isBalance ? "True" : "false");
     return 0;
 }
