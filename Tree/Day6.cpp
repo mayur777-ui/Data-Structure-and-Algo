@@ -115,3 +115,81 @@ int main(){
     int maxPathSum = maximumPathSum(root);
     cout << maxPathSum;
 }
+
+
+// Approach 1(USING SEACRCH FUNCTION)
+
+int Search(vector<int> inorder,int val,int left,int right){
+    for(int i = left; i <= right; i++){
+       if(val == inorder[i]){
+            return i;
+       }
+    }
+    return -1;
+}
+
+
+TreeNode* helperBuildTree(vector<int> inorder,vector<int> preorder, int&preIdx,int left,int right){
+    if(left > right){
+        return nullptr;
+    }
+
+    int rootVal = preorder[preIdx];
+    TreeNode* root = new TreeNode(rootVal);
+    preIdx++;
+
+    int index = Search(inorder,rootVal,left,right);
+
+    root->left = helperBuildTree(inorder,preorder,preIdx,left,index-1);
+    root->right=helperBuildTree(inorder,preorder,preIdx,index+1,right);
+
+    return root;
+}
+
+
+
+
+
+
+
+void printLevelOrder(TreeNode *root) {
+    if (root == nullptr) {
+        cout << "N ";
+        return;
+    }
+
+    queue<TreeNode *> qq;
+    qq.push(root);
+    int nonNull = 1;
+
+    while (!qq.empty() && nonNull > 0) {
+        TreeNode *curr = qq.front();
+        qq.pop();
+
+        if (curr == nullptr) {
+            cout << "N ";
+            continue;
+        }
+        nonNull--;
+
+        cout << (curr->val) << " ";
+        qq.push(curr->left);
+        qq.push(curr->right);
+        if (curr->left)
+            nonNull++;
+        if (curr->right)
+            nonNull++;
+    }
+}
+
+
+
+int main() {
+    vector<int> inorder = {3, 1, 4, 0, 5, 2};
+    vector<int> preorder = {0, 1, 3, 4, 2, 5};
+    TreeNode* root = buildTree(inorder, preorder);
+
+    printLevelOrder(root);
+
+    return 0;
+}
