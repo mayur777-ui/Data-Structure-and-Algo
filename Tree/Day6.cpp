@@ -148,6 +148,42 @@ TreeNode* helperBuildTree(vector<int> inorder,vector<int> preorder, int&preIdx,i
 
 
 
+// Approach 2
+
+int Search(unordered_map<int,int>&mp,int val){
+    if(mp.find(val) != mp.end()){
+        return mp[val];
+    }
+    return -1;
+}
+
+
+// Approach 2
+
+TreeNode* helperBuildTree(unordered_map<int,int>&mp,vector<int>&preorder,int&preIdx,int left,int right){
+    if(left > right){
+        return nullptr;
+    }
+    int val = preorder[preIdx];
+    preIdx++;
+    TreeNode* root = new TreeNode(val);
+    int index = Search(mp,val);
+    root->left = helperBuildTree(mp,preorder,preIdx,left,index-1);
+    root->right = helperBuildTree(mp,preorder,preIdx,index+1,right);
+
+    return root;
+}
+
+TreeNode* buildTree(vector<int>&inorder,vector<int>&preorder){
+    int preIdx = 0;
+    unordered_map<int,int> mp;
+    for(int i = 0; i < inorder.size(); i++){
+        mp[inorder[i]] = i;
+    }
+    TreeNode* root = helperBuildTree(mp,preorder,preIdx,0,preorder.size() - 1);
+    return  root;
+} 
+
 
 
 
