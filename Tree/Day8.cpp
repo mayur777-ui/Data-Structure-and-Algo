@@ -148,22 +148,22 @@ vector<int> topView(TreeNode* root){
 
 // Bottom view
 
-vector <int> bottomView(Node *root) {
+vector <int> bottomView(TreeNode *root){
     // Your Code Here
     vector<int> ans;
 if(root == nullptr){
     return ans;
 }
-queue<pair<Node*,int>> q;
+queue<pair<TreeNode*,int>> q;
 map<int,int>mp;
 q.push({root,0});
 while(!q.empty()){
     int n = q.size();
     for(int i = 0; i < n; i++){
-        Node* node = q.front().first;
+        TreeNode* node = q.front().first;
         int col = q.front().second;
         q.pop();
-        mp[col] = node->data;
+        mp[col] = node->val;
         if(node->left){
             q.push({node->left,col-1});
         }
@@ -178,6 +178,112 @@ for(auto it: mp){
 }
 return ans;
 }
+
+
+void tofind(TreeNode* root,vector<int>&ans,int level,int &maxlevel){
+    if(root == nullptr){
+        return;
+    }
+    if(level>maxlevel){
+        ans.push_back(root->val);
+        maxlevel = level;
+    }
+
+    tofind(root->left, ans,level + 1,maxlevel);
+    tofind(root->right,ans,level + 1,maxlevel);
+    
+}
+
+vector<int> leftView(TreeNode* root){
+    vector<int> ans;
+    if(root == nullptr){
+        return ans;
+    }
+    int maxlevel = -1;
+    tofind(root,ans,0,maxlevel);
+    return ans;
+}
+
+
+vector<int> leftView(TreeNode* root){
+    vector<int>ans;
+    if(!root){
+        return ans;
+    }
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        int n = q.size();
+        vector<int> temp;
+        for(int i = 0; i < n; i++){
+            TreeNode* node = q.front();
+            q.pop();
+            temp.push_back(node->val);
+            if(node->left){
+                q.push(node->left);
+            }
+            if(node->right){
+                q.push(node->right);
+            }
+        }
+        ans.push_back(temp[0]);
+    }
+
+    return ans;
+}
+
+
+void tofindR(TreeNode* root,vector<int>&ans,int level,int&maxlevel){
+    if(root == nullptr){
+        return;
+    }
+    if(level > maxlevel){
+        ans.push_back(root->val);
+        maxlevel = level;
+    }
+
+    tofindR(root->right,ans,level+1,maxlevel);
+    tofindR(root->left,ans,level+1,maxlevel);
+}
+
+vector<int> RightView(TreeNode* root){
+    vector<int> ans;
+    if(root == nullptr){
+        return ans;
+    }
+    int maxlevel = -1;
+    tofindR(root,ans,0,maxlevel);
+    return ans;
+}
+
+
+vector<int> RightView(TreeNode* root){
+    vector<int>ans;
+    if(!root){
+        return ans;
+    }
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        int n = q.size();
+        int temp;
+        for(int i = 0; i < n; i++){
+            TreeNode* node = q.front();
+            q.pop();
+            temp = node->val;
+            if(node->left){
+                q.push(node->left);
+            }
+            if(node->right){
+                q.push(node->right);
+            }
+        }
+        ans.push_back(temp);
+    }
+
+    return ans;
+}
+
 
 int main(){
     vector<int> arr = {1,2,3,4,5,6,7};
@@ -196,7 +302,16 @@ int main(){
     for(int i = 0; i < Topview.size();i++){
         cout << Topview[i] << " ";
     }
-    for(int i = 0; i < Topview.size();i++){
-        cout << Topview[i] << " ";
+    for(int i = 0; i < BottomView.size();i++){
+        cout << BottomView[i] << " ";
+    }
+
+    vector<int> leftview = leftView(root);
+    for(int i = 0; i < leftview.size();i++){
+        cout << leftview[i] << " ";
+    }
+    vector<int> rightview = RightView(root);
+    for(int i = 0; i < rightview.size();i++){
+        cout << rightview[i] << " ";
     }
 }
