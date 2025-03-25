@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include<bits/stdc.h>
 using namespace std;
 
 struct TreeNode {
@@ -100,6 +100,39 @@ int main() {
         cout << num << " ";
     }
     cout << endl;
+
+    return 0;
+}
+
+
+
+
+
+vector<int> printBoundary(TreeNode* root){
+    vector<int> arr;
+    if(root == nullptr){
+        return arr;
+    }
+}
+
+
+int main() {
+    // Creating a sample binary tree
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right->left = new Node(6);
+    root->right->right = new Node(7);
+
+
+    // Get the boundary traversal
+    vector<int> result = printBoundary(root);
+
+    // Print the result
+    cout << "Boundary Traversal: ";
+    printResult(result);
 
     return 0;
 }
