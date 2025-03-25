@@ -285,6 +285,23 @@ vector<int> RightView(TreeNode* root){
 }
 
 
+bool isSymmetricUnit(TreeNode* root1,TreeNode* root2){
+    if(root1 == nullptr || root2 == nullptr){
+        return root1 == root2;
+    }
+
+    return (root1->val == root2 -> val) && isSymmetricUnit(root1->left,root2->right) && isSymmetricUnit(root1->right,root2->left);
+}
+bool isSymmetric(TreeNode* root) {
+    if(!root){
+        return true;
+    }
+    if(!root->left && !root->right){
+        return true;
+    }
+    return isSymmetricUnit(root->left,root->right);
+}
+
 int main(){
     vector<int> arr = {1,2,3,4,5,6,7};
     int i = 0;
@@ -313,5 +330,11 @@ int main(){
     vector<int> rightview = RightView(root);
     for(int i = 0; i < rightview.size();i++){
         cout << rightview[i] << " ";
+    }
+
+    if(isSymmetric(root)){
+        cout<< "True";
+    }else{
+        cout << "fasle";
     }
 }
