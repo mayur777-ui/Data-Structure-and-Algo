@@ -185,10 +185,10 @@ int main(){
     TreeNode* root = converttotree(arr, i);
     vector<vector<int>> ans = verticalTraversal(root);
     for(auto it:ans){
-        // for(auto it1:it){
-        //     cout << it1 << " ";
-        // }
-        // cout << endl;
+        for(auto it1:it){
+            cout << it1 << " ";
+        }
+        cout << endl;
     }
 
     vector<int> Topview = topView(root);
