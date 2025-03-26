@@ -25,6 +25,8 @@ TreeNode* converttotree(vector<int> arr, int i){
 
 
 
+// Is given Tree is valid binary tree or not
+
 bool isVal(TreeNode*root,long minV,long maxV){
     if(!root){
         return true;
@@ -39,9 +41,23 @@ bool isValidBst(TreeNode* root){
 }
 
 
+
+// two sum in bst
+bool find(TreeNode* root,int k, unordered_set<int> &set){
+    if(!root){
+        return false;
+    }
+    if(set.count(k - root->val)) return true;
+    set.insert(root->val);
+    return find(root->left, k,set) || find(root->right, k ,set);
+}
+bool findTarget(TreeNode* root, int k) {
+    unordered_set<int> set;
+    return find(root,k,set);
+}
+
 int main(){
-    vector<int>arr = {5,1,4,3,6};
-
+    vector<int>arr = {5,1,4,3,6}
     TreeNode* root = converttotree(arr,0);
-
+    cout << isValidBst(root);
 }
