@@ -4,46 +4,46 @@ using namespace std;
 
 
 
-// void dfs(int start,vector<list<int>>&adjL,vector<int>&visited){
-//     visited[start] = 1;
-//     for(auto neighbours: adjL[start]){
-//         if(!visited[neighbours]){
-//             dfs(neighbours,adjL,visited);
-//         }
-//     }
-// }
+void dfs(int start,vector<list<int>>&adjL,vector<int>&visited){
+    visited[start] = 1;
+    for(auto neighbours: adjL[start]){
+        if(!visited[neighbours]){
+            dfs(neighbours,adjL,visited);
+        }
+    }
+}
 
-// int numProvinces(vector<vector<int>> adj,int V){
-//     vector<list<int>> adjL(V);
-//     for(int i = 0; i < V; i++){
-//         for(int j = 0; j < V;j++){
-//             if(adj[i][j] == 1 && i != j){
-//                 adjL[i].push_back(j);
-//                 adjL[j].push_back(i);
-//             }
-//         }
-//     }
-//     vector<int> visited(V, 0);
-//     int cnt = 0;
-//     for(int i = 0; i < V; i++){
-//         if(!visited[i]){
-//             cnt++;
-//             dfs(i, adjL, visited); 
-//         }
-//     }
-//     return cnt;
-// }
+int numProvinces(vector<vector<int>> adj,int V){
+    vector<list<int>> adjL(V);
+    for(int i = 0; i < V; i++){
+        for(int j = 0; j < V;j++){
+            if(adj[i][j] == 1 && i != j){
+                adjL[i].push_back(j);
+                adjL[j].push_back(i);
+            }
+        }
+    }
+    vector<int> visited(V, 0);
+    int cnt = 0;
+    for(int i = 0; i < V; i++){
+        if(!visited[i]){
+            cnt++;
+            dfs(i, adjL, visited); 
+        }
+    }
+    return cnt;
+}
 
-// int main(){
-//     vector<vector<int>> adj
-//     {
-//         {1, 0, 1},
-//         {0, 1, 0},
-//         {1, 0, 1}
-//     };
+int main(){
+    vector<vector<int>> adj
+    {
+        {1, 0, 1},
+        {0, 1, 0},
+        {1, 0, 1}
+    };
 
-//     cout << numProvinces(adj,3);
-// }
+    cout << numProvinces(adj,3);
+}
 
 
 
@@ -66,6 +66,11 @@ int orangesRotting(vector<vector<int>>grid){
         }
     }
 
+// Direction	(dx, dy)	Meaning
+// Up	(-1, 0)	Move one row up (decrease row index by 1)
+// Down	(1, 0)	Move one row down (increase row index by 1)
+// Left	(0, -1)	Move one column left (decrease column index by 1)
+// Right	(0, 1)	Move one column right (increase column index by 1)
     vector<pair<int,int>> directions = {{-1,0},{1,0},{0,-1},{0,1}};
     int time = 0;
     while(!q.empty() && fresh > 0){
