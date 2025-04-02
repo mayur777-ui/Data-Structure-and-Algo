@@ -143,3 +143,52 @@ int main() {
     }
     return 0;
 }
+
+
+
+// Topological error
+
+void dfs(int i, vector<vector<int>>&adj,vector<int>&vis,stack<int>&st){
+    vis[i] = 1;
+    for(auto neighbour: adj[i]){
+        if(!vis[neighbour]){
+            dfs(neighbour,adj,vis,st);
+        }
+    }
+    st.push(i);
+}
+
+vector<int> TopoSort(int V,vector<vector<int>>&edges){
+    vector<vector<int>> adj(V);
+    for(auto edge: edges){
+        adj[edge[0]].push_back(edge[1]);
+    }
+    vector<int>vis(V,0);
+    stack<int>st;
+    for(int i = 0; i < V; i++){
+        if(!vis[i]){
+            dfs(i,adj,vis,st);
+        }
+    }
+    vector<int>ans;
+    while (!st.empty()){
+        ans.push_back(st.top());
+        st.pop();
+    }
+    return ans;
+    
+}
+
+int main(){
+    int V = 4;
+    vector<vector<int>> edges = {
+        {3, 0},
+        {2, 0},
+        {1, 0}
+    };
+
+    vector<int> TSort = TopoSort(V, edges);
+    for(int i = 0; i < TSort.size(); i++){
+        cout << TSort[i] << " ";
+    }
+}
