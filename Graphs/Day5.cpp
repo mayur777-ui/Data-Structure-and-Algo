@@ -146,7 +146,8 @@ int main() {
 
 
 
-// Topological error
+// Topological sort
+
 
 void dfs(int i, vector<vector<int>>&adj,vector<int>&vis,stack<int>&st){
     vis[i] = 1;
