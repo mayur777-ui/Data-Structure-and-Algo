@@ -103,7 +103,7 @@ int main()
 
 
 
-// shortest in path Weighted daylight
+// Shortest Path in a Directed Acyclic Graph (DAG)
 
 void topoDfs(int i, vector<int>&vis, vector<vector<pair<int,int>>>&adj,stack<int>&st){
     vis[i] = 1;
