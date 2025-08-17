@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
+// Prim's Algorithm
 int spanningTree(int V, vector<vector<pair<int, int>>>&adj){
      priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>>pq; 
      int sum = 0;
@@ -42,9 +42,9 @@ int main() {
 
 
 
-Disjoin Set Union(Dsu)
+// Disjoin Set Union(Dsu)
 
-Broute Force of Dsu
+// Broute Force of Dsu
 
 class DisjointSet{
     vector<int>parent;
