@@ -114,6 +114,32 @@ vector<int> inorderwithstack(TreeNode*root){
     }
     return temp;
 }
+
+
+// postorder traversal using stack
+vector<int>PostOrderWithStack(TreeNode* root){
+    if(!root)return {};
+    TreeNode* curr = root;
+    TreeNode* lastVisited = nullptr;
+    vector<int>temp;
+    stack<TreeNode*> st;
+    while(curr != nullptr || !st.empty()){
+        if(curr != nullptr){
+            st.push(curr);
+            curr = curr->left;
+        }else{
+            TreeNode* peekNode = st.top();
+            if(peekNode->right != nullptr && lastVisited != peekNode->right){
+                curr = peekNode->right;
+            }else{
+                st.pop();
+                lastVisited = peekNode;
+                temp.push_back(peekNode->val);                
+            }
+        } 
+    }
+    return temp;
+}
 void printVector(const vector<int>& vec) {
     for (int num : vec) {
         cout << num << " ";
@@ -138,4 +164,5 @@ int main(){
     for(const vector<int>& level : ans){
         printVector(level);
     }
+
 }
