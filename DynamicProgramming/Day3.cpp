@@ -78,7 +78,7 @@ int minSubsetSumDifferenceTab(vector<int>& arr, int n){
     for(int i = 0; i <= totSum/2; i++){
         if(dp[n - 1][i]){
             int diff = abs(totSum - 2*i);
-            Mini = min(mini, diff);
+            Mini = min(Mini, diff);
         }
     }
     return Mini;
