@@ -48,7 +48,7 @@ int minSubsetSumDifference(vector<int>& arr, int n) {
 
 
 
-// #Approach(tabulation) 
+// #Approach(tabulation)  (leetcode 2035) (not solve with this method we need a method who called for METM Because the dp matrix in that leetcode getting to big and that is not handlable case)
 
 int minSubsetSumDifferenceTab(vector<int>& arr, int n){
     int totSum = 0;
@@ -92,4 +92,64 @@ int main() {
 
     return 0;
 }
+
+
+
+// Coin Change(with 2-d approach)
+// 1.Approach (Memoization)
+int helper(vector<int>&coins, int ind, int amount, vector<vector<int>>&dp){
+    if(ind == 0){
+        if(amount % coins[ind] == 0){
+            return amount/coins[ind];
+        }else{
+            return 1e9;
+        }
+    }
+    if(dp[ind][amount] != -1)return dp[ind][amount];
+    int nottake = helper(coins, ind - 1 , amount, dp);
+    int take = 1e9;
+    if(coins[ind] <= amount){
+        take = 1 + helper(coins, ind, amount - coins[ind], dp);
+    }
+    return dp[ind][amount] = min(take, nottake);
+}
+
+int coinChange(vector<int>& coins, int amount, int n) {
+    vector<vector<int>>dp(n,vector<int>(amount + 1, -1));
+    int ans = (helper(coins, n - 1, amount, dp) == 1e9)? -1: helper(coins, n - 1, amount, dp);
+    return ans;
+}
+
+// Approach 2(tabulation)
+int coinChangeTab(vector<int>& coins, int amount, int n){
+    vector<vector<int>>dp(n,vector<int>(amount + 1, -1));
+    for(int i = 0; i <= amount; i++){
+        if(i% coins[0] == 0){
+            dp[0][i] = i/coins[0];
+        }else{
+            dp[0][i] = 1e9;
+        }
+    }
+    for(int i = 1; i < n; i++){
+        for(int k = 0; k <= amount; k++){
+            int NotTake = dp[i - 1][k];
+            int take = 1e9;
+            if(coins[i] <= k){
+                take = 1 + dp[i][k - coins[i]];
+            }
+            dp[i][k] = min(take, NotTake);
+        }
+    }
+
+    return dp[n - 1][amount];
+}
+
+int main(){
+    vector<int>coins = {1,2,5};
+    int amount = 11;
+    int n = coins.size();
+    cout  << coinChange(coins, amount, n);
+    cout  << coinChangeTab(coins, amount, n);
+}
+
 
