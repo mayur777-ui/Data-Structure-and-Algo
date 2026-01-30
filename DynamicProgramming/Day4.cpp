@@ -161,3 +161,107 @@ int main(){
     cout << change(amount, coins);
     cout << changeTab(amount , coins);
 }
+
+
+
+
+// Unbounded Knapsack (DP - 23)
+// Approach 1(Memoization);
+int helper(int ind, int W, vector<int>& val, vector<int>& wt, vector<vector<int>>&dp){
+    if(ind == 0){
+        return W/wt[ind] * val[ind];
+    }
+    if(dp[ind][W] != -1)return dp[ind][W];
+    int notTake = helper(ind - 1, W,val, wt, dp);
+    int take =INT_MIN;
+    if(W >= wt[ind]){
+        take = val[ind] + helper(ind, W-wt[ind], val, wt, dp);
+    }
+     return dp[ind][W] = max(notTake, take);
+}
+int unboundedKnapsack(int n, int W, vector<int>& val, vector<int>& wt) {
+    vector<vector<int>>dp(n, vector<int>(W + 1, -1));
+    return helper(n - 1,W,val,wt, dp);
+}
+
+
+// Approach 2. (Tabulation)
+int unboundedKnapsackTab(int n, int W, vector<int>& val, vector<int>& wt){
+    vector<vector<int>>dp(n, vector<int>(W + 1, -1));
+    for(int i = 0; i <= W; i++){
+        dp[0][i] = (i/wt[0]) * val[0];
+    }
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j <= W; j++){
+            int notTake = dp[i - 1][j];
+            int take = INT_MIN;
+            if(wt[i] <= j){
+                take = val[i] + dp[i][j - wt[i]];
+            }
+
+            dp[i][j] = max(take, notTake);
+        }
+    }
+    return dp[n - 1][W];
+}
+
+int main() {
+    vector<int> wt = {2, 4, 6};
+    vector<int> val = {5, 11, 13};
+    int W = 10;
+    int n = wt.size();
+    cout << "The Maximum value of items the thief can steal is " << unboundedKnapsack(n, W, val, wt) << endl;
+    cout << "The Maximum value of items the thief can steal is " << unboundedKnapsackTab(n, W, val, wt) << endl;
+    return 0;
+}
+
+
+int helper(vector<int>&price, int ind, int n, vector<vector<int>>&dp){
+    if(ind == 0){
+        return n * price[ind];
+    }
+    if(dp[ind][n] != -1)return dp[ind][n];
+    int notTaKe = helper(price, ind - 1, n, dp);
+    int take = INT_MIN;
+    int rodLane = ind + 1;  //as we know arr is 0 based index but road lenght is 1 based
+    if(rodLane <= n){
+        take = price[ind] + helper(price,ind, n - rodLane, dp);
+    }
+    return dp[ind][n] = max(take, notTake);
+}
+int rodCutting(vector<int>& price, int n) {
+    vector<vector<int>>dp(n, vector<int>(n  + 1, -1));
+    return helper(price, n - 1, n,dp);
+}
+
+int rodCuttingTab(vector<int>&price, int n){
+    vector<vector<int>>dp(n , vector<int>(n + 1, -1));
+    for(int i = 0; i <= n; i++){
+        dp[0][i] = i * price[0];
+    }
+
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j <= n; j++){
+            int notTake = dp[i - 1][j];
+            int take =INT_MIN;
+            int roadLane = i + 1;
+            if(roadLane <= j){
+                take = price[i] + dp[i][j - roadLane];
+            }
+            dp[i][j] = max(take, notTake);
+        }
+    }
+    return dp[n - 1][n];
+}
+
+
+int main() {
+    int n = 8;
+
+    vector<int> price = {1, 5, 8, 9, 10, 17, 17, 20};
+
+    int maxValue = rodCutting(price, n);
+    cout << "The maximum obtainable value is: " << maxValue << endl;
+
+    return 0;
+}
